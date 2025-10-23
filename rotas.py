@@ -55,42 +55,156 @@ def get_consulta_movimentacao_id(id):
         print(f'erro:{response.status_code}')
         return {'erro': response.json()}
 
-#
-#
-# def get_lista_emprestimo():
-#     url = f'http://10.135.235.31:5002/lista/emprestimo/'
-#     response = requests.get(url)
-#     if response.status_code == 200:
-#         dados = response.json()
-#         print(dados)
-#         return dados
-#     else:
-#         print(f"erro:{response.status_code}")
-#         return {"erro":response.json()}
-#
-#
-# def put_atualizar_usuario(id, novo_nome, novo_CPF, novo_endereco, novo_email, novo_password, novo_papel):
-#     url = f'http://10.135.235.31:5002/atualizar/usuario/{id}'
-#
-#     usuario = {
-#         "nome":novo_nome,
-#         "CPF":novo_CPF,
-#         "endereco":novo_endereco,
-#         "email":novo_email,
-#         "password":novo_password,
-#         "papel":novo_papel,
-#
-#     }
-#     response = requests.put(url, json=usuario)
-#     if response.status_code == 200:
-#         dados = response.json()
-#         print(dados)
-#         return dados
-#     else:
-#         print(f"erro:{response.status_code}")
-#         return {"erro": response.json()}
+
+def get_lista_usuario():
+    url = f'http://10.135.235.31:5002/lista/usuario'
+    response = requests.get(url)
+    if response.status_code == 200:
+        dados = response.json()
+        print(dados)
+        return dados
+    else:
+        print(f'erro:{response.status_code}')
+        return {'erro': response.json()}
+
+def get_lista_produto():
+    url = f'http://10.135.235.31:5002/lista/produto'
+    response = requests.get(url)
+    if response.status_code == 200:
+        dados = response.json()
+        print(dados)
+        return dados
+    else:
+        print(f'erro:{response.status_code}')
+        return {'erro': response.json()}
+
+def get_lista_blog():
+    url = f'http://10.135.235.31:5002/lista/blog'
+    response = requests.get(url)
+    if response.status_code == 200:
+        dados = response.json()
+        print(dados)
+        return dados
+    else:
+        print(f'erro:{response.status_code}')
+        return {'erro': response.json()}
 
 
+def get_lista_pedido():
+    url = f'http://10.135.235.31:5002/lista/pedido'
+    response = requests.get(url)
+    if response.status_code == 200:
+        dados = response.json()
+        print(dados)
+        return dados
+    else:
+        print(f'erro:{response.status_code}')
+        return {'erro': response.json()}
+
+def get_lista_movimentacao():
+    url = f'http://10.135.235.31:5002/lista/movimentacao'
+    response = requests.get(url)
+    if response.status_code == 200:
+        dados = response.json()
+        print(dados)
+        return dados
+    else:
+        print(f'erro:{response.status_code}')
+        return {'erro': response.json()}
+
+def put_atualizar_usuario(nome, CPF, email, papel):
+    url = f'http://10.135.235.31:5002/atualizar/usuario/{id}'
+    usuario = {
+        'nome': nome,
+        'cpf': CPF,
+        'email': email,
+        'papel': papel
+    }
+    response = requests.put(url, json=usuario)
+    if response.status_code == 200:
+        dados = response.json()
+        print(dados)
+        return dados
+    else:
+        print(f'erro:{response.status_code}')
+        return {'erro': response.json()}
+
+
+def put_atualizar_produto(nome_produto, dimensao_produto,
+                          preco_produto, peso_produto,
+                          cor_produto, descricao_produto):
+    url = f'http://10.135.235.31:5002/atualizar/produto/{id}'
+    produto = {
+        'nome_produto': nome_produto,
+        'dimensao_produto': dimensao_produto,
+        'preco_produto': preco_produto,
+        'peso_produto': peso_produto,
+        'cor_produto': cor_produto,
+        'descricao_produto': descricao_produto
+    }
+    response = requests.put(url, json=produto)
+    if response.status_code == 200:
+        dados = response.json()
+        print(dados)
+        return dados
+    else:
+        print(f'erro:{response.status_code}')
+        return {'erro': response.json()}
+
+def put_atualizar_blog(titulo, data, comentario, usuario_id):
+    url = f'http://10.135.235.31:5002/atualizar/blog/{id}'
+    blog = {
+        'titulo': titulo,
+        'data': data,
+        'comentario': comentario,
+        'usuario_id': usuario_id
+    }
+    response = requests.put(url, json=blog)
+    if response.status_code == 200:
+        dados = response.json()
+        print(dados)
+        return dados
+    else:
+        print(f'erro:{response.status_code}')
+        return {'erro': response.json()}
+
+def put_atualizar_pedido(usuario_id, produto_id, quantidade,
+                         valor_total, endereco, vendedor_id):
+    url = f'http://10.135.235.31:5002/atualizar/pedido/{id}'
+    pedido = {
+        'usuario_id': usuario_id,
+        'produto_id': produto_id,
+        'quantidade': quantidade,
+        'valor_total': valor_total,
+        'endereco': endereco,
+        'vendedor_id': vendedor_id
+    }
+    response = requests.put(url, json=pedido)
+    if response.status_code == 200:
+        dados = response.json()
+        print(dados)
+        return dados
+    else:
+        print(f'erro:{response.status_code}')
+        return {'erro': response.json()}
+
+def put_atualizar_movimentacao(quantidade, produto_id, data, status, usuario_id):
+    url = f'http://10.135.235.31:5002/atualizar/movimentacao/{id}'
+    movimentacao = {
+        'quantidade': quantidade,
+        'produto_id': produto_id,
+        'data': data,
+        'status': status,
+        'usuario_id': usuario_id
+    }
+    response = requests.put(url, json=movimentacao)
+    if response.status_code == 200:
+        dados = response.json()
+        print(dados)
+        return dados
+    else:
+        print(f'erro:{response.status_code}')
+        return {'erro': response.json()}
 
 def post_cadastrar_usuario(id,nome,CPF,email,papel):
     url= f'http://127.0.0.1:5003/cadastro/usuario{id}'
@@ -236,5 +350,22 @@ def post_cadastro_pedido(id,produto_id,vendedor_id,quantidade,
     else:
         print(f"erro:{response.status_code}")
         return {"erro": response.json()}
+
+def post_login(email, password):
+    url = f'http://10.135.235.31:5002/login/'
+    input_login = {
+        'email': email,
+        'password': password
+    }
+    response = requests.post(url, json=input_login)
+    if response.status_code == 200:
+        dados = response.json()
+        print(f'email:{dados["email"]}\n')
+        print(f'password:{dados["password"]}\n')
+        return dados
+    else:
+        print(f"erro:{response.status_code}")
+        return {"erro": response.json()}
+
 
 

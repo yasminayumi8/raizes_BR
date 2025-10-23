@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Página Inicial - Raízes do Brasil{% endblock %}
+
+{% block content %}
+
+<div class="container-inicial d-flex flex-column flex-md-row align-items-center justify-content-center my-5">
+    <div class="card-inicial p-4 m-3">
+        <p class="titulo2">Bem-vindo(a)</p>
+        <p class="texto">Nossa missão é promover a valorização da cultura indígena, integrando tradições e recursos tecnológicos para desenvolvimento sustentável e fortalecimento da identidade dos povos originários.</p>
+    </div>
+
+    <div class="imagem-inicial m-3">
+        <img src="{{ url_for('static', filename='img_inicial.svg') }}" alt="Cultura indígena" class="img-fluid">
+    </div>
+</div>
+
+{% endblock %}

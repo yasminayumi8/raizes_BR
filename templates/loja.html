@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Loja de Medicinais - Raízes do Brasil{% endblock %}
+
+{% block head_extras %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='medicinais.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+
+        <aside class="col-md-2 aside-tribal p-3">
+            <h5 class="fw-bold text-primary">Categorias</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('renderizar_loja') }}?tipo=ervas">Ervas</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('renderizar_loja') }}?tipo=plantas">Plantas</a></li>
+            </ul>
+        </aside>
+
+        <main class="col-md-10 p-4">
+
+            {% if erro %}
+            <div class="alert alert-danger" role="alert">
+                Erro ao carregar os produtos: {{ erro }}
+            </div>
+            {% endif %}
+
+            <div class="row g-4">
+
+                {% for produto in produtos %}
+                <div class="col-12">
+                    <div class="card-medicinal shadow-sm d-flex align-items-center">
+                        <div class="img-container">
+                            <img src="{{ produto.imagem_url | default(url_for('static', filename='default_med.png')) }}"
+                                 alt="{{ produto.nome_produto }}">
+                        </div>
+                        <div class="conteudo-card">
+                            <h5 class="titulo-medicinal">{{ produto.nome_produto }}</h5>
+
+                            <p><strong>Uso:</strong> {{ produto.uso | default('Não especificado') }}</p>
+                            <p><strong>Parte utilizada:</strong> {{ produto.parte_utilizada | default('Não especificada') }}</p>
+                            <p><strong>Forma de uso:</strong> {{ produto.forma_uso | default('Não especificada') }}</p>
+
+                            <a href="{{ url_for('consulta_produto', id=produto.id_produto) }}" class="btn btn-success btn-sm">Ver Produto</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% if not produtos and not erro %}
+                <div class="col-12">
+                    <p class="alert alert-info">Ainda não há produtos medicinais cadastrados.</p>
+                </div>
+                {% endif %}
+
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
